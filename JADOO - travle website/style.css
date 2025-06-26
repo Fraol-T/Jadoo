@@ -121,7 +121,7 @@ body{
                 margin: 24px 0px 30px 0px;
                 background-image: url(assets/images/Decore-3.svg);
                 background-repeat: no-repeat;
-                background-position: right -55px top 75px;
+                background-position: right -55px top 70px;
             }
             :nth-child(3){
                 width: 477px;
@@ -146,6 +146,10 @@ body{
                     font-size: 14px;
                     box-shadow: 0px 20px 35px rgba(241, 165, 1, 0.2);
                 }
+                #btn-1:hover{
+                    background-color: rgb(255, 175, 2);
+                    box-shadow: 0px 20px 35px rgba(255, 175, 1, 0.5);
+                }
                 #btn-2{
                     width: 165px;
                     height: 52px;
@@ -157,8 +161,12 @@ body{
                     font-size: 17px;
                     color: #686D77;
                     img{
-                        width: 52px;
-                        /* box-shadow: 0px 15px 30px 0px rgba(223, 105, 81, 0.3); */
+                        width: 52px;                    }
+                }
+                #btn-2:hover{
+                    box-shadow: 0px 15px 30px 0px rgba(223, 105, 81, 0.5);
+                    img{
+                        background-color: rgb(223, 105, 81);
                     }
                 }
             }
@@ -218,9 +226,12 @@ body{
         
     }
 @media screen and (min-width: 769px) and (max-width: 1023px){
+    p{
+        font-size: 8px;
+    }
     body{
         width: 100%;
-
+        background-size: 405px;
         nav{
             width: 100%;
             height: 40px;
@@ -258,6 +269,61 @@ body{
                 .visible{
                     display: none;
                 }
+            }
+        }
+        header{
+            width: 636px;
+            #description{
+                width: 334px;
+                height: 283px;
+                :first-child{
+                    font-size: 12px;
+                }
+
+                h2{
+                    font-size: 42px;
+                    letter-spacing: -2px;
+                    line-height: 45px;
+                    width: 262px;
+                    height: 150px;
+                    margin: 5px;
+                    background-size: 204px;
+                    background-position: right -40px top 37px;
+                }
+                :nth-child(3){
+                    width: 235px;
+                    height: 45px;
+                    
+                }
+                #btn{
+                    width: 200px;
+                    height: 31px;
+                    margin-top: 15px;
+                    gap: 20px;
+                    #btn-1{
+                        width: 90px;
+                        height: 37px;
+                        font-size: 7px;
+                        border-radius: 8px;
+                        padding: 8px 12px;
+                    }
+                    #btn-2{
+                        width: 87px;
+                        height: 27px;
+                        gap: 10px;
+                        font-size: 8px;
+                        img{
+                            width: 27px;
+                        }
+                    }
+                }
+            }
+            #image{
+                width: 421px;
+                margin-left: -70px;
+                img{
+                    width: 405px;
+                }    
             }
         }
     }

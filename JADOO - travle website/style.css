@@ -168,7 +168,7 @@ body{
             margin-left: -225px;
             background-image: url(assets/images/Plane.svg), url(assets/images/Plane.svg);
             background-repeat: no-repeat;
-            background-position: left, right;
+            background-position: 20% 10%, 100% 18%;
         }
     }
    

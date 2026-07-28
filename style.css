@@ -41,6 +41,9 @@
 /* ========================================
    RESET & GLOBAL
    ======================================== */
+/* ========================================
+   RESET & GLOBAL
+   ======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -54,14 +57,16 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     max-width: 1440px;
+    width: 100%;
     margin: 0 auto;
-    padding: 56px 0 0 0;
+    padding: 24px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(assets/images/Decor-1.svg), url(assets/images/Decor-2.svg), url(assets/images/Decor-2.svg);
+    background-image: url(assets/images/Decor-1.svg);
     background-repeat: no-repeat;
-    background-position: right top, -75% -50%, 150% 115%;
+    background-position: right top;
+    background-size: clamp(300px, 45vw, 700px);
     overflow-x: hidden;
 }
 
@@ -76,15 +81,18 @@ p {
     color: #5E6282;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 18px;
+    font-size: clamp(14px, 1.2vw + 10px, 18px);
     text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .section-title {
     color: #14183E;
     font-family: 'Volkhov', serif;
     font-weight: 700;
-    font-size: 50px;
+    font-size: clamp(26px, 3.5vw + 14px, 50px);
+    line-height: 1.2;
     text-align: center;
     margin-top: 8px;
 }
@@ -98,9 +106,10 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-container {
@@ -109,30 +118,32 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 70px;
 }
 
 .logo {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .logo img {
-    height: 32px;
+    height: 34px;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 10px;
+    gap: 8px;
 }
 
 .nav-links li {
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
 }
 
 .nav-links li a {
@@ -141,29 +152,48 @@ nav {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 15px;
-    padding-bottom: 4px;
+    padding: 10px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     border-bottom: 2px solid transparent;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .nav-links li a:hover {
-    border-bottom-color: #212832;
+    border-bottom-color: #DF6951;
+    color: #DF6951;
 }
 
 .nav-links .signup {
-    background-color:  #212832;
-    border-radius: 6px;
+    background-color: #212832;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-links .signup:hover {
+    background-color: #DF6951;
+    transform: translateY(-1px);
 }
 
 .nav-links .signup a {
     color: white;
+    border-bottom: none;
 }
 
+.nav-links .signup a:hover {
+    border-bottom: none;
+    color: white;
+}
 
 .nav-links .language {
     font-weight: 500;
     color: #212832;
     cursor: pointer;
+    padding: 10px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* Hamburger button — hidden on desktop */
@@ -171,21 +201,30 @@ nav {
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
     z-index: 1001;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .hamburger span {
     display: block;
     width: 24px;
-    height: 2px;
+    height: 2.5px;
     background-color: #212832;
     border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -197,7 +236,7 @@ nav {
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(5px, -5.5px);
 }
 
 /* ========================================
@@ -220,84 +259,96 @@ nav {
     color: #DF6951;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: clamp(15px, 1.2vw + 10px, 20px);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
 .hero h1 {
     color: #181E4B;
     font-family: 'Volkhov', serif;
     font-weight: 700;
-    font-size: 84px;
-    letter-spacing: -4px;
-    line-height: 89px;
+    font-size: clamp(34px, 5vw + 16px, 84px);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
     max-width: 545px;
     margin: 24px 0 30px 0;
     background-image: url(assets/images/Decor-3.svg);
     background-repeat: no-repeat;
-    background-position: right -55px top 70px;
+    background-position: right -10px top 65%;
+    background-size: clamp(100px, 18vw, 180px);
 }
 
 .hero-text {
     max-width: 477px;
-    line-height: 30px;
+    line-height: 1.8;
+    font-size: clamp(14px, 0.5vw + 12px, 16px);
 }
 
 .hero-buttons {
     display: flex;
     align-items: center;
-    gap: 44px;
+    gap: 32px;
     margin-top: 34px;
 }
 
 .btn-primary {
     background-color: #F1A501;
     color: white;
-    width: 170px;
-    height: 70px;
+    min-width: 160px;
+    height: 60px;
+    min-height: 44px;
     border-radius: 10px;
     border: none;
-    padding: 19px 26px;
+    padding: 16px 26px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
-    box-shadow: 0px 20px 35px rgba(241, 165, 1, 0.2);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 15px 30px rgba(241, 165, 1, 0.25);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
 }
 
 .btn-primary:hover {
-    background-color: rgb(255, 175, 2);
-    box-shadow: 0px 20px 35px rgba(255, 175, 1, 0.5);
+    background-color: #e29b00;
+    transform: translateY(-2px);
+    box-shadow: 0px 20px 35px rgba(241, 165, 1, 0.45);
 }
 
 .btn-play {
     display: flex;
     align-items: center;
-    gap: 21px;
+    gap: 16px;
     background: transparent;
     border: none;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
     color: #686D77;
     cursor: pointer;
-    padding: 10px;
-    transition: box-shadow 0.3s ease;
+    padding: 8px 12px;
+    min-height: 44px;
+    transition: color 0.25s ease, transform 0.25s ease;
+    will-change: transform;
 }
 
 .btn-play img {
-    width: 52px;
-    transition: background-color 0.3s ease;
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    border-radius: 50%;
 }
 
 .btn-play:hover {
-    box-shadow: 0px 15px 30px rgba(223, 105, 81, 0.5);
+    color: #DF6951;
+    transform: translateY(-2px);
 }
 
 .btn-play:hover img {
-    background-color: rgb(223, 105, 81);
-    border-radius: 50%;
+    transform: scale(1.1);
+    box-shadow: 0px 12px 25px rgba(223, 105, 81, 0.4);
 }
 
 .hero-image {
@@ -338,9 +389,11 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 30px 20px;
+    padding: 36px 24px;
     border-radius: 36px;
-    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    background-color: white;
+    transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
 }
 
 .service-card img {
@@ -349,12 +402,11 @@ nav {
 }
 
 .service-card h4 {
-    margin: 29px 0 15px 0;
+    margin: 24px 0 15px 0;
     color: #1E1D4C;
     font-family: 'OpenSans', sans-serif;
     font-weight: 600;
     font-size: 18px;
-    transition: font-size 0.3s ease;
 }
 
 .service-card p {
@@ -367,17 +419,9 @@ nav {
 
 .service-card:hover {
     box-shadow:
-        0px 100px 80px rgba(0, 0, 0, 0.02),
-        0px 64.81px 46.85px rgba(0, 0, 0, 0.015),
-        0px 38.52px 25.48px rgba(0, 0, 0, 0.012),
-        0px 20px 13px rgba(0, 0, 0, 0.01),
-        0px 8.15px 6.52px rgba(0, 0, 0, 0.008),
-        0px 1.85px 3.15px rgba(0, 0, 0, 0.005);
+        0px 24px 48px rgba(0, 0, 0, 0.06),
+        0px 12px 24px rgba(0, 0, 0, 0.04);
     transform: translateY(-8px);
-}
-
-.service-card:hover h4 {
-    font-size: 20px;
 }
 
 /* ========================================
@@ -410,7 +454,8 @@ nav {
     background-position: center;
     border-radius: 24px;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    will-change: transform;
 }
 
 .destination-card:hover {
@@ -488,7 +533,6 @@ nav {
 .booking-steps .section-title {
     text-align: left;
     margin: 15px 0 30px 0;
-    font-size: 50px;
 }
 
 .step {
@@ -520,15 +564,16 @@ nav {
     max-width: 370px;
     width: 100%;
     padding: 19px 26px;
-    box-shadow:
-        0px 100px 80px rgba(0, 0, 0, 0.02),
-        0px 64.81px 46.85px rgba(0, 0, 0, 0.015),
-        0px 38.52px 25.48px rgba(0, 0, 0, 0.012),
-        0px 20px 13px rgba(0, 0, 0, 0.01),
-        0px 8.15px 6.52px rgba(0, 0, 0, 0.008),
-        0px 1.85px 3.15px rgba(0, 0, 0, 0.005);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.08);
     border-radius: 26px;
     background: white;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform;
+}
+
+.booking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.12);
 }
 
 .booking-card .card-image {
@@ -562,6 +607,11 @@ nav {
 .card-icons img {
     width: 36px;
     height: 36px;
+    transition: transform 0.25s ease;
+}
+
+.card-icons img:hover {
+    transform: scale(1.15);
 }
 
 .card-footer {
@@ -583,14 +633,19 @@ nav {
 }
 
 .card-footer .heart-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
 }
 
 .card-footer .heart-icon:hover {
-    transform: scale(1.3);
+    transform: scale(1.25);
+}
+
+.card-footer .heart-icon.active {
+    filter: drop-shadow(0 2px 8px rgba(223, 105, 81, 0.6));
+    transform: scale(1.2);
 }
 
 /* ========================================
@@ -625,16 +680,17 @@ nav {
     max-width: 504px;
     width: 100%;
     padding: 28px 30px 28px 34px;
-    box-shadow:
-        0px 100px 80px rgba(0, 0, 0, 0.02),
-        0px 64.81px 46.85px rgba(0, 0, 0, 0.015),
-        0px 38.52px 25.48px rgba(0, 0, 0, 0.012),
-        0px 20px 13px rgba(0, 0, 0, 0.01),
-        0px 8.15px 6.52px rgba(0, 0, 0, 0.008),
-        0px 1.85px 3.15px rgba(0, 0, 0, 0.005);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
     background: white;
     position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-avatar {
@@ -644,6 +700,7 @@ nav {
     position: absolute;
     top: -34px;
     left: -34px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .testimonial-text {
@@ -686,11 +743,13 @@ nav {
 .sponsors img {
     max-width: 150px;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    opacity: 0.8;
 }
 
 .sponsors img:hover {
     transform: scale(1.1);
+    opacity: 1;
 }
 
 /* ========================================
@@ -711,12 +770,12 @@ nav {
 .subscribe-field {
     max-width: 1170px;
     width: 100%;
-    padding: 79px 60px;
+    padding: clamp(40px, 6vw, 79px) clamp(24px, 4vw, 60px);
     background-color: #DFD7F9;
     background-image: url(assets/images/oval.svg), url(assets/images/oval-2.svg);
     background-repeat: no-repeat;
     background-position: right 0% top 50%, left -10% bottom 0%;
-    border-radius: 129px 20px 20px 20px;
+    border-radius: clamp(40px, 8vw, 129px) 20px 20px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -734,8 +793,8 @@ nav {
     color: #5E6282;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 33px;
-    line-height: 58px;
+    font-size: clamp(20px, 2.5vw + 10px, 33px);
+    line-height: 1.4;
     max-width: 859px;
     text-align: center;
     margin-bottom: 40px;
@@ -744,45 +803,51 @@ nav {
 .subscribe-field form {
     display: flex;
     gap: 24px;
+    max-width: 100%;
 }
 
 .subscribe-field input[type="email"] {
     border: none;
     width: 421px;
+    max-width: 100%;
     height: 68px;
-    padding: 25px 25px 25px 50px;
+    min-height: 44px;
+    padding: 20px 20px 20px 50px;
     color: #39425D;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
     border-radius: 10px;
     background-image: url(assets/images/box.svg);
     background-repeat: no-repeat;
     background-position: 5% 50%;
     outline: none;
+    transition: box-shadow 0.25s ease;
 }
 
 .subscribe-field input[type="email"]:focus {
-    box-shadow: 0 0 0 3px rgba(94, 59, 225, 0.3);
+    box-shadow: 0 0 0 3px rgba(223, 105, 81, 0.4);
 }
 
 .subscribe-btn {
     width: 180px;
     height: 68px;
+    min-height: 44px;
     border-radius: 10px;
     border: none;
-    background-image: linear-gradient(#FF946D, #FF7D68);
+    background-image: linear-gradient(135deg, #FF946D, #FF7D68);
     color: white;
     font-family: 'OpenSans', sans-serif;
     font-weight: 600;
     font-size: 17px;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
 }
 
 .subscribe-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 10px 25px rgba(255, 125, 104, 0.4);
+    box-shadow: 0px 12px 25px rgba(255, 125, 104, 0.4);
 }
 
 /* ========================================
@@ -839,11 +904,14 @@ footer {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 14px;
-    transition: color 0.3s ease;
+    padding: 4px 0;
+    display: inline-block;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .footer-column ul li a:hover {
     color: #DF6951;
+    transform: translateX(3px);
 }
 
 .footer-social {
@@ -852,7 +920,7 @@ footer {
 
 .social-icons {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     justify-content: center;
 }
 
@@ -860,20 +928,27 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #f8f8f8;
+    transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .social-icons a:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px);
+    background-color: #DF6951;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(223, 105, 81, 0.3);
+}
+
+.social-icons a:hover img {
+    filter: brightness(0) invert(1);
 }
 
 .social-icons img {
     width: 20px;
     height: 20px;
+    transition: filter 0.25s ease;
 }
 
 .footer-social > p {
@@ -888,9 +963,9 @@ footer {
 }
 
 .app-links img {
-    height: 36px;
+    height: 40px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease;
 }
 
 .app-links img:hover {
@@ -908,31 +983,10 @@ footer {
    RESPONSIVE — TABLET (max-width: 1024px)
    ======================================== */
 @media screen and (max-width: 1024px) {
-    .section-title {
-        font-size: 36px;
-    }
-
     /* Hero */
     .hero {
         grid-template-columns: 1fr 1fr;
         margin-bottom: 60px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-        line-height: 58px;
-        letter-spacing: -2px;
-        max-width: 100%;
-        background-size: 180px;
-        background-position: right -30px top 40px;
-    }
-
-    .hero-subtitle {
-        font-size: 16px;
-    }
-
-    .hero-text {
-        font-size: 14px;
     }
 
     .hero-buttons {
@@ -940,7 +994,7 @@ footer {
     }
 
     .btn-primary {
-        width: 140px;
+        min-width: 140px;
         height: 55px;
         font-size: 13px;
         padding: 14px 18px;
@@ -949,10 +1003,6 @@ footer {
     .btn-play {
         font-size: 14px;
         gap: 12px;
-    }
-
-    .btn-play img {
-        width: 40px;
     }
 
     /* Services */
@@ -976,25 +1026,12 @@ footer {
         gap: 40px;
     }
 
-    .booking-steps .section-title {
-        font-size: 36px;
-    }
-
     /* Testimonials */
     .testimonials {
         gap: 40px;
     }
 
-    .testimonials-header .section-title {
-        font-size: 36px;
-    }
-
     /* Subscribe */
-    .subscribe-field > p {
-        font-size: 24px;
-        line-height: 40px;
-    }
-
     .subscribe-field input[type="email"] {
         width: 300px;
     }
@@ -1023,63 +1060,65 @@ footer {
    ======================================== */
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 20px;
-        background-size: 460px auto, auto, auto;
+        padding-top: 16px;
     }
 
-    .section-title {
-        font-size: 28px;
-        line-height: 36px;
-    }
-
-    .section-subtitle {
-        font-size: 16px;
-    }
-
-    /* Nav */
+    /* Nav mobile drawer */
     .hamburger {
         display: flex;
     }
 
     .nav-links {
-        display: none;
+        display: flex;
         position: fixed;
         top: 0;
         right: 0;
-        width: 280px;
+        width: min(300px, 85vw);
         height: 100vh;
         background-color: white;
         flex-direction: column;
-        padding: 80px 30px 40px 30px;
+        padding: 80px 24px 40px 24px;
         gap: 0;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.12);
         z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+        visibility: hidden;
     }
 
     .nav-links.active {
-        display: flex;
+        transform: translateX(0);
+        visibility: visible;
     }
 
     .nav-links li {
         width: 100%;
         justify-content: flex-start;
-        padding: 12px 0;
-        border-bottom: 1px solid #f0f0f0;
+        padding: 6px 0;
+        border-bottom: 1px solid #f4f4f5;
+    }
+
+    .nav-links li a {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 8px;
     }
 
     .nav-links .signup {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 16px;
+        width: 100%;
     }
 
     .nav-links .signup a {
         color: white;
         font-weight: 600;
+        justify-content: center;
     }
 
-    /* Overlay for mobile menu */
+    /* Mobile nav overlay */
     .nav-overlay {
         position: fixed;
         top: 0;
@@ -1087,19 +1126,24 @@ footer {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
         z-index: 999;
-        display: none;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
     }
 
     .nav-overlay.active {
-        display: block;
+        opacity: 1;
+        pointer-events: auto;
     }
 
     /* Hero */
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
-        margin: 30px auto 50px auto;
+        margin: 20px auto 40px auto;
     }
 
     .hero-content {
@@ -1110,37 +1154,28 @@ footer {
     .hero-image {
         order: 1;
         justify-content: center;
-        margin-bottom: 30px;
-        background-size: 60px, 40px;
-        background-position: 30% 0%, 90% 10%;
+        margin-bottom: 24px;
+        background-size: 50px, 35px;
+        background-position: 20% 0%, 90% 10%;
     }
 
     .hero-image img {
-        max-width: 80%;
+        max-width: 75%;
     }
 
     .hero h1 {
-        font-size: 36px;
-        line-height: 42px;
-        letter-spacing: -1px;
-        max-width: 100%;
         margin: 16px 0 20px 0;
-        background-size: 120px;
-        background-position: right 10% top 25px;
-    }
-
-    .hero-subtitle {
-        font-size: 14px;
+        background-position: center 65%;
     }
 
     .hero-text {
-        font-size: 14px;
         max-width: 100%;
+        margin: 0 auto;
     }
 
     .hero-buttons {
         justify-content: center;
-        gap: 20px;
+        gap: 16px;
         flex-wrap: wrap;
     }
 
@@ -1161,7 +1196,7 @@ footer {
     }
 
     .service-card {
-        padding: 24px 20px;
+        padding: 28px 20px;
     }
 
     /* Destinations */
@@ -1182,12 +1217,17 @@ footer {
     /* Booking */
     .booking {
         grid-template-columns: 1fr;
-        margin: 60px auto;
+        margin: 50px auto;
         gap: 40px;
     }
 
+    .booking-steps .section-subtitle,
     .booking-steps .section-title {
-        font-size: 28px;
+        text-align: center;
+    }
+
+    .step {
+        justify-content: flex-start;
     }
 
     /* Testimonials */
@@ -1204,9 +1244,6 @@ footer {
     .testimonials-header .section-subtitle,
     .testimonials-header .section-title {
         text-align: center;
-    }
-
-    .testimonials-header .section-title {
         max-width: 100%;
     }
 
@@ -1222,7 +1259,7 @@ footer {
     /* Sponsors */
     .sponsors {
         justify-content: center;
-        gap: 30px;
+        gap: 24px;
     }
 
     .sponsors img {
@@ -1234,20 +1271,9 @@ footer {
         margin: 40px 0;
     }
 
-    .subscribe-field {
-        padding: 50px 24px;
-        border-radius: 40px 20px 20px 20px;
-    }
-
     .subscribe-icon {
         top: -20px;
         right: 24px;
-    }
-
-    .subscribe-field > p {
-        font-size: 18px;
-        line-height: 30px;
-        margin-bottom: 24px;
     }
 
     .subscribe-field form {
@@ -1261,7 +1287,6 @@ footer {
         width: 100%;
         max-width: 350px;
         height: 56px;
-        padding: 18px 18px 18px 46px;
     }
 
     .subscribe-btn {
@@ -1273,7 +1298,7 @@ footer {
     /* Footer */
     footer {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
         text-align: center;
         padding: 40px 0 20px 0;
     }
@@ -1310,27 +1335,41 @@ footer {
    RESPONSIVE — SMALL MOBILE (max-width: 480px)
    ======================================== */
 @media screen and (max-width: 480px) {
-    body {
-        background-size: 360px auto, auto, auto;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-        line-height: 36px;
-        background-size: 120px;
-        background-position: right 65% top 30px;
-    }
-
-    .section-title {
-        font-size: 24px;
-    }
-
     .footer-links {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 24px;
     }
 
     .sponsors img {
         max-width: 80px;
     }
 }
+
+/* ========================================
+   ACCESSIBILITY — PREFERS REDUCED MOTION
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .nav-links {
+        transition: none !important;
+    }
+
+    .service-card,
+    .destination-card,
+    .step,
+    .booking-card,
+    .testimonial-card,
+    .hero-content,
+    .hero-image,
+    .sponsors img {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
